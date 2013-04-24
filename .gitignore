@@ -5,6 +5,13 @@
 */*.xcodeproj/xcuserdata*
 */*.xcodeproj/project.xcworkspace
 */*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad/*
+*/*/build/
+*/*/.DS_Store
+*/*/*.xcodeproj/*.pbxuser
+*/*/*.xcodeproj/*.mode*
+*/*/*.xcodeproj/xcuserdata*
+*/*/*.xcodeproj/project.xcworkspace
+*/*/*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad/*
 *~
 *#
 .arcconfig
