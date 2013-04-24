@@ -51,7 +51,7 @@
 {
     // We need to properly handle activation of the application with regards to Facebook Login
     // (e.g., returning from iOS 6.0 Login Dialog or from fast app switching).
-    [FBSession.activeSession handleDidBecomeActive];
+    [FBAppCall handleDidBecomeActive];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

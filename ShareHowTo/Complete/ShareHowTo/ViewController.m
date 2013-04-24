@@ -50,9 +50,7 @@
 /*
  * Method invoked when the share button is clicked
  */
-- (IBAction)shareButtonAction:(id)sender {
-    // TO DO: Implement share
-    
+- (IBAction)shareButtonAction:(id)sender {    
     // First attempt: Publish using the Facenook Share dialog
     FBAppCall *call = [self publishWithShareDialog];
     
@@ -125,9 +123,10 @@
             url:[NSURL URLWithString:@"https://developers.facebook.com/ios"]
             handler:^(FBOSIntegratedShareDialogResult result, NSError *error) {
                 // Only show the error if it is not due to the dialog
-                // not being supported, i.e. code = 7, otherwise ignore
-                // because our fallback will show the share view controller.
-                if (error && [error code] == 7) {
+                // not being supported, otherwise ignore because our fallback
+                // will show the share view controller.
+                if ([[error userInfo][FBErrorDialogReasonKey]
+                     isEqualToString:FBErrorDialogNotSupported]) {
                     return;
                 }
                 if (error) {
@@ -185,9 +184,7 @@
  */
 - (NSString *)checkErrorMessage:(NSError *)error {
     NSString *errorMessage = @"";
-    if (error.fberrorShouldNotifyUser ||
-        error.fberrorCategory == FBErrorCategoryPermissions ||
-        error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession) {
+    if (error.fberrorUserMessage) {
         errorMessage = error.fberrorUserMessage;
     } else {
         errorMessage = @"Operation failed due to a connection problem, retry later.";

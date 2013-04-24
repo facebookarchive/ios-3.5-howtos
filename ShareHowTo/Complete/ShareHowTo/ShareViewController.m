@@ -157,7 +157,6 @@ UIAlertViewDelegate>
                             forKey:@"message"];
     }
     
-    // TO DO: Implement the flow that triggers the Graph API share
     // Ask for publish_actions permissions in context
     if ([FBSession.activeSession.permissions
          indexOfObject:@"publish_actions"] == NSNotFound) {
