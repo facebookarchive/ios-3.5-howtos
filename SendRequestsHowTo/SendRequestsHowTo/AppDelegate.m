@@ -18,8 +18,6 @@
 
 #import "ViewController.h"
 
-#import "FBSBJSON.h"
-
 NSString *const FBSessionStateChangedNotification =
 @"com.facebook.samples.SendRequestsHowTo:FBSessionStateChangedNotification";
 
@@ -195,13 +193,22 @@ NSString *const FBSessionStateChangedNotification =
  * Send a user to user request
  */
 - (void)sendRequest {
-    FBSBJSON *jsonWriter = [FBSBJSON new];
-    NSDictionary *gift = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"5", @"social_karma",
-                          @"1", @"badge_of_awesomeness",
-                          nil];
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization
+                        dataWithJSONObject:@{
+                        @"social_karma": @"5",
+                        @"badge_of_awesomeness": @"1"}
+                        options:0
+                        error:&error];
+    if (!jsonData) {
+        NSLog(@"JSON error: %@", error);
+        return;
+    }
     
-    NSString *giftStr = [jsonWriter stringWithObject:gift];
+    NSString *giftStr = [[NSString alloc]
+                         initWithData:jsonData
+                         encoding:NSUTF8StringEncoding];
+
     NSMutableDictionary* params = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                    giftStr, @"data",
                                    nil];
@@ -245,13 +252,21 @@ NSString *const FBSessionStateChangedNotification =
  * Send a user to user request, with a targeted list
  */
 - (void)sendRequest:(NSArray *) targeted {
-    FBSBJSON *jsonWriter = [FBSBJSON new];
-    NSDictionary *gift = [NSDictionary dictionaryWithObjectsAndKeys:
-                          @"5", @"social_karma",
-                          @"1", @"badge_of_awesomeness",
-                          nil];
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization
+                        dataWithJSONObject:@{
+                        @"social_karma": @"5",
+                        @"badge_of_awesomeness": @"1"}
+                        options:0
+                        error:&error];
+    if (error) {
+        NSLog(@"JSON error: %@", error);
+        return;
+    }
     
-    NSString *giftStr = [jsonWriter stringWithObject:gift];
+    NSString *giftStr = [[NSString alloc]
+                         initWithData:jsonData
+                         encoding:NSUTF8StringEncoding];
     NSMutableDictionary* params =
     [NSMutableDictionary dictionaryWithObjectsAndKeys:giftStr, @"data",
      nil];
@@ -308,10 +323,21 @@ NSString *const FBSessionStateChangedNotification =
                                                stringWithFormat:@"%@ sent you a gift",
                                                [[result objectForKey:@"from"]
                                                 objectForKey:@"name"]];
-                                      FBSBJSON *jsonParser = [FBSBJSON new];
+                                      NSString *jsonString = [result objectForKey:@"data"];
+                                      NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+                                      if (!jsonData) {
+                                          NSLog(@"JSON decode error: %@", error);
+                                          return;
+                                      }
+                                      NSError *jsonError = nil;
                                       NSDictionary *requestData =
-                                      [jsonParser
-                                       objectWithString:[result objectForKey:@"data"]];
+                                      [NSJSONSerialization JSONObjectWithData:jsonData
+                                                                      options:0
+                                                                        error:&jsonError];
+                                      if (jsonError) {
+                                          NSLog(@"JSON decode error: %@", error);
+                                          return;
+                                      }
                                       message =
                                       [NSString stringWithFormat:@"Badge: %@, Karma: %@",
                                        [requestData objectForKey:@"badge_of_awesomeness"],
