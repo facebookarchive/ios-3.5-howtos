@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300A6C0F172F0E0F000380AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300A6C0E172F0E0F000380AA /* Security.framework */; };
 		3017AEAA15D99CD500C05803 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3017AEA915D99CD500C05803 /* UIKit.framework */; };
 		3017AEAC15D99CD500C05803 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3017AEAB15D99CD500C05803 /* Foundation.framework */; };
 		3017AEAE15D99CD500C05803 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3017AEAD15D99CD500C05803 /* CoreGraphics.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		300A6C0E172F0E0F000380AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		3017AEA515D99CD500C05803 /* BatchRequestsHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BatchRequestsHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3017AEA915D99CD500C05803 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3017AEAB15D99CD500C05803 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300A6C0F172F0E0F000380AA /* Security.framework in Frameworks */,
 				30267BB01612444000B7B3CE /* Social.framework in Frameworks */,
 				30DB4A10160BF6E400C2876A /* AdSupport.framework in Frameworks */,
 				30DB4A0D160BF6DE00C2876A /* Accounts.framework in Frameworks */,
@@ -89,6 +92,7 @@
 		3017AEA815D99CD500C05803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300A6C0E172F0E0F000380AA /* Security.framework */,
 				3017AED015D99D0E00C05803 /* FacebookSDKResources.bundle */,
 				3017AECE15D99D0500C05803 /* FacebookSDK.framework */,
 				30DB4A0F160BF6E400C2876A /* AdSupport.framework */,

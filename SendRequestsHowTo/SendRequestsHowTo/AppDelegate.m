@@ -428,7 +428,7 @@ NSString *const FBSessionStateChangedNotification =
          annotation:(id)annotation {
     self.openedURL = url;
     // attempt to extract a token from the url
-    return [FBSession.activeSession handleOpenURL:url];
+    return [FBAppCall handleOpenURL:url sourceApplication:sourceApplication];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -454,7 +454,7 @@ NSString *const FBSessionStateChangedNotification =
 {
     // We need to properly handle activation of the application with regards to SSO
     // (e.g., returning from iOS 6.0 authorization dialog or from fast app switching).
-    [FBSession.activeSession handleDidBecomeActive];
+    [FBAppCall handleDidBecomeActive];
     
     // Check the flag for enabling any prompts. If that flag is on
     // check the app active counter

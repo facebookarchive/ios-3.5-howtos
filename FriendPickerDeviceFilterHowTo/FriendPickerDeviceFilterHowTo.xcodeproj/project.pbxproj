@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300A6C19172F0F97000380AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300A6C18172F0F97000380AA /* Security.framework */; };
 		30267BD31612470500B7B3CE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30267BD21612470500B7B3CE /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		302A764B15F972860018B83D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302A764A15F972860018B83D /* UIKit.framework */; };
 		302A764D15F972860018B83D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302A764C15F972860018B83D /* Foundation.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		300A6C18172F0F97000380AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		30267BD21612470500B7B3CE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		302A764615F972860018B83D /* FriendPickerDeviceFilterHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FriendPickerDeviceFilterHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		302A764A15F972860018B83D /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -57,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300A6C19172F0F97000380AA /* Security.framework in Frameworks */,
 				30267BD31612470500B7B3CE /* Social.framework in Frameworks */,
 				308DFADB160C2B9900AF6812 /* AdSupport.framework in Frameworks */,
 				308DFAD8160C2B9300AF6812 /* Accounts.framework in Frameworks */,
@@ -90,6 +93,7 @@
 		302A764915F972860018B83D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300A6C18172F0F97000380AA /* Security.framework */,
 				302A766915F972C60018B83D /* FacebookSDKResources.bundle */,
 				302A766715F972BA0018B83D /* FacebookSDK.framework */,
 				308DFADA160C2B9900AF6812 /* AdSupport.framework */,
@@ -249,7 +253,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
 					"-ObjC",
@@ -273,7 +277,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",

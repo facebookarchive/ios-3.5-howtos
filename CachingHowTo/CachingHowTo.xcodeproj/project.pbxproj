@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300A6C11172F0E89000380AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300A6C10172F0E89000380AA /* Security.framework */; };
 		30267BB7161244A000B7B3CE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30267BB6161244A000B7B3CE /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30A0EA5715DEA6EC00CB5FC3 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A0EA5615DEA6EC00CB5FC3 /* UIKit.framework */; };
 		30A0EA5915DEA6EC00CB5FC3 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30A0EA5815DEA6EC00CB5FC3 /* Foundation.framework */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		300A6C10172F0E89000380AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		30267BB6161244A000B7B3CE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		30A0EA5215DEA6EC00CB5FC3 /* CachingHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CachingHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30A0EA5615DEA6EC00CB5FC3 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300A6C11172F0E89000380AA /* Security.framework in Frameworks */,
 				30267BB7161244A000B7B3CE /* Social.framework in Frameworks */,
 				30DB49B4160BEFA600C2876A /* AdSupport.framework in Frameworks */,
 				30DB49B1160BEFA100C2876A /* Accounts.framework in Frameworks */,
@@ -93,6 +96,7 @@
 		30A0EA5515DEA6EC00CB5FC3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300A6C10172F0E89000380AA /* Security.framework */,
 				30A0EA7515DEA76900CB5FC3 /* FacebookSDKResources.bundle */,
 				30A0EA9515DED83E00CB5FC3 /* FacebookSDK.framework */,
 				30DB49B3160BEFA600C2876A /* AdSupport.framework */,
@@ -299,6 +303,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CachingHowTo/CachingHowTo-Prefix.pch";
 				INFOPLIST_FILE = "CachingHowTo/CachingHowTo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -315,6 +320,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CachingHowTo/CachingHowTo-Prefix.pch";
 				INFOPLIST_FILE = "CachingHowTo/CachingHowTo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

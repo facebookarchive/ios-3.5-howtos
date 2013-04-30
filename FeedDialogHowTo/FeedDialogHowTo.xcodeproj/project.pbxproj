@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		300A6C13172F0EB9000380AA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300A6C12172F0EB9000380AA /* Security.framework */; };
 		300DB8E01610F17300536A98 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300DB8DF1610F17300536A98 /* FacebookSDK.framework */; };
 		300DB8E21610F18000536A98 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 300DB8E11610F18000536A98 /* FacebookSDKResources.bundle */; };
 		3017AF3215DAA85F00C05803 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3017AF3115DAA85F00C05803 /* UIKit.framework */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		300A6C12172F0EB9000380AA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		300DB8DF1610F17300536A98 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		300DB8E11610F18000536A98 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		3017AF2D15DAA85F00C05803 /* FeedDialogHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedDialogHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -56,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300A6C13172F0EB9000380AA /* Security.framework in Frameworks */,
 				30267BBE161245DE00B7B3CE /* Social.framework in Frameworks */,
 				30DB499D160BE71C00C2876A /* AdSupport.framework in Frameworks */,
 				30DB499A160BE71300C2876A /* Accounts.framework in Frameworks */,
@@ -89,6 +92,7 @@
 		3017AF3015DAA85F00C05803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				300A6C12172F0EB9000380AA /* Security.framework */,
 				300DB8E11610F18000536A98 /* FacebookSDKResources.bundle */,
 				300DB8DF1610F17300536A98 /* FacebookSDK.framework */,
 				30DB499C160BE71C00C2876A /* AdSupport.framework */,
@@ -247,7 +251,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
 					"-ObjC",
@@ -271,7 +275,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				OTHER_LDFLAGS = (
 					"-lsqlite3.0",
