@@ -89,8 +89,6 @@
     params.name = @"Facebook SDK for iOS";
     params.caption = @"Build great social apps and get more installs.";
     params.description = @"The Facebook SDK for iOS makes it easier and faster to develop Facebook integrated iOS apps.";
-    // Set this flag on to enable the Share Dialog beta feature
-    [FBSettings enableBetaFeature:FBBetaFeaturesShareDialog];
     return [FBDialogs presentShareDialogWithParams:params
                                        clientState:nil
                                            handler:
