@@ -37,14 +37,14 @@
 		30385BE817017A1600776F19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		30385BEA17017CAA00776F19 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		30385BEC17017CBE00776F19 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
-		3086296616120F8800276720 /* ShareNativeDialogsHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShareNativeDialogsHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3086296616120F8800276720 /* iOSShareSheetHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSShareSheetHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3086296A16120F8800276720 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3086296C16120F8800276720 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		3086296E16120F8800276720 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		3086297216120F8800276720 /* ShareNativeDialogsHowTo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ShareNativeDialogsHowTo-Info.plist"; sourceTree = "<group>"; };
+		3086297216120F8800276720 /* iOSShareSheetHowTo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "iOSShareSheetHowTo-Info.plist"; sourceTree = "<group>"; };
 		3086297416120F8800276720 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3086297616120F8800276720 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3086297816120F8800276720 /* ShareNativeDialogsHowTo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShareNativeDialogsHowTo-Prefix.pch"; sourceTree = "<group>"; };
+		3086297816120F8800276720 /* iOSShareSheetHowTo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iOSShareSheetHowTo-Prefix.pch"; sourceTree = "<group>"; };
 		3086297916120F8800276720 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		3086297A16120F8800276720 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		3086297C16120F8800276720 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -88,7 +88,7 @@
 		3086295B16120F8700276720 = {
 			isa = PBXGroup;
 			children = (
-				3086297016120F8800276720 /* ShareNativeDialogsHowTo */,
+				3086297016120F8800276720 /* iOSShareSheetHowTo */,
 				3086296916120F8800276720 /* Frameworks */,
 				3086296716120F8800276720 /* Products */,
 			);
@@ -97,7 +97,7 @@
 		3086296716120F8800276720 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3086296616120F8800276720 /* ShareNativeDialogsHowTo.app */,
+				3086296616120F8800276720 /* iOSShareSheetHowTo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -118,7 +118,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3086297016120F8800276720 /* ShareNativeDialogsHowTo */ = {
+		3086297016120F8800276720 /* iOSShareSheetHowTo */ = {
 			isa = PBXGroup;
 			children = (
 				3086297916120F8800276720 /* AppDelegate.h */,
@@ -131,7 +131,7 @@
 				308629A51612124B00276720 /* ShareViewController.xib */,
 				3086297116120F8800276720 /* Supporting Files */,
 			);
-			path = ShareNativeDialogsHowTo;
+			path = iOSShareSheetHowTo;
 			sourceTree = "<group>";
 		};
 		3086297116120F8800276720 /* Supporting Files */ = {
@@ -142,10 +142,10 @@
 				308629981612104D00276720 /* Icon-72@2x.png */,
 				308629991612104D00276720 /* Icon.png */,
 				3086299A1612104D00276720 /* Icon@2x.png */,
-				3086297216120F8800276720 /* ShareNativeDialogsHowTo-Info.plist */,
+				3086297216120F8800276720 /* iOSShareSheetHowTo-Info.plist */,
 				3086297316120F8800276720 /* InfoPlist.strings */,
 				3086297616120F8800276720 /* main.m */,
-				3086297816120F8800276720 /* ShareNativeDialogsHowTo-Prefix.pch */,
+				3086297816120F8800276720 /* iOSShareSheetHowTo-Prefix.pch */,
 				3086297C16120F8800276720 /* Default.png */,
 				3086297E16120F8800276720 /* Default@2x.png */,
 				3086298016120F8800276720 /* Default-568h@2x.png */,
@@ -156,9 +156,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3086296516120F8700276720 /* ShareNativeDialogsHowTo */ = {
+		3086296516120F8700276720 /* iOSShareSheetHowTo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3086298A16120F8800276720 /* Build configuration list for PBXNativeTarget "ShareNativeDialogsHowTo" */;
+			buildConfigurationList = 3086298A16120F8800276720 /* Build configuration list for PBXNativeTarget "iOSShareSheetHowTo" */;
 			buildPhases = (
 				3086296216120F8700276720 /* Sources */,
 				3086296316120F8700276720 /* Frameworks */,
@@ -168,9 +168,9 @@
 			);
 			dependencies = (
 			);
-			name = ShareNativeDialogsHowTo;
-			productName = ShareNativeDialogsHowTo;
-			productReference = 3086296616120F8800276720 /* ShareNativeDialogsHowTo.app */;
+			name = iOSShareSheetHowTo;
+			productName = iOSShareSheetHowTo;
+			productReference = 3086296616120F8800276720 /* iOSShareSheetHowTo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -182,7 +182,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Facebook Inc.";
 			};
-			buildConfigurationList = 3086296016120F8700276720 /* Build configuration list for PBXProject "ShareNativeDialogsHowTo" */;
+			buildConfigurationList = 3086296016120F8700276720 /* Build configuration list for PBXProject "iOSShareSheetHowTo" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -194,7 +194,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3086296516120F8700276720 /* ShareNativeDialogsHowTo */,
+				3086296516120F8700276720 /* iOSShareSheetHowTo */,
 			);
 		};
 /* End PBXProject section */
@@ -320,9 +320,9 @@
 					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShareNativeDialogsHowTo/ShareNativeDialogsHowTo-Prefix.pch";
-				INFOPLIST_FILE = "ShareNativeDialogsHowTo/ShareNativeDialogsHowTo-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "iOSShareSheetHowTo/iOSShareSheetHowTo-Prefix.pch";
+				INFOPLIST_FILE = "iOSShareSheetHowTo/iOSShareSheetHowTo-Info.plist";
+				PRODUCT_NAME = iOSShareSheetHowTo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -335,9 +335,9 @@
 					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "ShareNativeDialogsHowTo/ShareNativeDialogsHowTo-Prefix.pch";
-				INFOPLIST_FILE = "ShareNativeDialogsHowTo/ShareNativeDialogsHowTo-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "iOSShareSheetHowTo/iOSShareSheetHowTo-Prefix.pch";
+				INFOPLIST_FILE = "iOSShareSheetHowTo/iOSShareSheetHowTo-Info.plist";
+				PRODUCT_NAME = iOSShareSheetHowTo;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -345,7 +345,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3086296016120F8700276720 /* Build configuration list for PBXProject "ShareNativeDialogsHowTo" */ = {
+		3086296016120F8700276720 /* Build configuration list for PBXProject "iOSShareSheetHowTo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3086298816120F8800276720 /* Debug */,
@@ -354,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3086298A16120F8800276720 /* Build configuration list for PBXNativeTarget "ShareNativeDialogsHowTo" */ = {
+		3086298A16120F8800276720 /* Build configuration list for PBXNativeTarget "iOSShareSheetHowTo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3086298B16120F8800276720 /* Debug */,
