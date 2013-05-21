@@ -12,6 +12,9 @@
 */*/*.xcodeproj/xcuserdata*
 */*/*.xcodeproj/project.xcworkspace
 */*/*.xcodeproj/project.xcworkspace/xcuserdata/*.xcuserdatad/*
+*/*.xcodeproj/project.xcworkspace/contents.xcworkspacedata
+*/*.xcodeproj/xcuserdata/*.xcuserdatad/*
+*/*.xcodeproj/xcuserdata/*.xcuserdatad/*
 *~
 *#
 .arcconfig
