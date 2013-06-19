@@ -24,9 +24,6 @@
 
 @implementation FriendViewController
 
-@synthesize data = _data;
-@synthesize toolbar = _toolbar;
-
 #pragma mark - Helper methods
 
 /*
@@ -34,14 +31,8 @@
  */
 - (void)doneButtonPressed:(id)sender
 {
-    // Dismiss view controller based on supported methods
-    if ([self respondsToSelector:@selector(presentingViewController)]) {
-        // iOS 5+ support
-        [[self presentingViewController] dismissModalViewControllerAnimated:YES];
-    } else {
-        [[self parentViewController] dismissModalViewControllerAnimated:YES];
-        
-    }
+    // Dismiss view controller
+    [[self presentingViewController] dismissModalViewControllerAnimated:YES];
 }
 
 #pragma mark - Initialization methods
@@ -116,13 +107,11 @@
                 initWithStyle:UITableViewCellStyleDefault
                 reuseIdentifier:CellIdentifier];
     }
-    cell.textLabel.text = [[self.data objectAtIndex:indexPath.row]
-                           objectForKey:@"name"];
+    cell.textLabel.text = self.data[indexPath.row][@"name"];
     UIImage *image = [UIImage imageWithData:
                       [NSData dataWithContentsOfURL:
                        [NSURL URLWithString:
-                        [[self.data objectAtIndex:indexPath.row]
-                         objectForKey:@"pic_square"]]]];
+                        self.data[indexPath.row][@"pic_square"]]]];
     cell.imageView.image = image;
     
     return cell;

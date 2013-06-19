@@ -19,7 +19,7 @@
 #import "FriendViewController.h"
 
 @interface ViewController ()
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton *authButton;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *queryButton;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *multiQueryButton;
 
@@ -27,26 +27,10 @@
 
 @implementation ViewController
 
-@synthesize authButton;
 @synthesize queryButton;
 @synthesize multiQueryButton;
 
 #pragma mark - Helper methods
-
-/*
- * Configure the logged in versus logged out UI
- */
-- (void)sessionStateChanged:(NSNotification*)notification {
-    if (FBSession.activeSession.isOpen) {
-        [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
-        self.queryButton.hidden = NO;
-        self.multiQueryButton.hidden = NO;
-    } else {
-        [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
-        self.queryButton.hidden = YES;
-        self.multiQueryButton.hidden = YES;
-    }
-}
 
 /*
  * Present the friend details display view controller
@@ -58,13 +42,7 @@
     [[FriendViewController alloc] initWithStyle:UITableViewStylePlain];
     viewController.data = friendData;
     // Present view controller modally.
-    if ([self
-         respondsToSelector:@selector(presentViewController:animated:completion:)]) {
-        // iOS 5+
-        [self presentViewController:viewController animated:YES completion:nil];
-    } else {
-        [self presentModalViewController:viewController animated:YES];
-    }
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 #pragma mark - View lifecycle
@@ -74,28 +52,17 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // Register for notifications on FB session state changes
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(sessionStateChanged:)
-     name:FBSessionStateChangedNotification
-     object:nil];
-    
-    // Check the session for a cached token to show the proper authenticated
-    // UI. However, since this is not user intitiated, do not show the login UX.
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate openSessionWithAllowLoginUI:NO];
+    // Ask for the required permissions
+    self.loginView.readPermissions = @[@"basic_info"];
 }
 
 - (void)viewDidUnload
 {
-    [self setAuthButton:nil];
     [self setQueryButton:nil];
     [self setMultiQueryButton:nil];
+    [self setLoginView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -104,35 +71,13 @@
 }
 
 #pragma mark - Action methods
-- (IBAction)authButtonAction:(id)sender {
-    AppDelegate *appDelegate =
-    [[UIApplication sharedApplication] delegate];
-    
-    // The user has initiated a login, so call the openSession method
-    // and show the login UX if necessary.
-    //[appDelegate openSessionWithAllowLoginUI:YES];
-    
-    // If the user is authenticated, log out when the button is clicked.
-    // If the user is not authenticated, log in when the button is clicked.
-    if (FBSession.activeSession.isOpen) {
-        [appDelegate closeSession];
-    } else {
-        // The user has initiated a login, so call the openSession method
-        // and show the login UX if necessary.
-        [appDelegate openSessionWithAllowLoginUI:YES];
-    }
-    
-    
-}
-
 - (IBAction)queryButtonAction:(id)sender {
     // Query to fetch the active user's friends, limit to 25.
     NSString *query =
     @"SELECT uid, name, pic_square FROM user WHERE uid IN "
     @"(SELECT uid2 FROM friend WHERE uid1 = me() LIMIT 25)";
     // Set up the query parameter
-    NSDictionary *queryParam =
-    [NSDictionary dictionaryWithObjectsAndKeys:query, @"q", nil];
+    NSDictionary *queryParam = @{ @"q": query };
     // Make the API request that uses FQL
     [FBRequestConnection startWithGraphPath:@"/fql"
                                  parameters:queryParam
@@ -145,7 +90,7 @@
                               } else {
                                   NSLog(@"Result: %@", result);
                                   // Get the friend data to display
-                                  NSArray *friendInfo = (NSArray *) [result objectForKey:@"data"];
+                                  NSArray *friendInfo = (NSArray *) result[@"data"];
                                   // Show the friend details display
                                   [self showFriends:friendInfo];
                               }
@@ -163,8 +108,7 @@
     @"'friendinfo':'SELECT uid, name, pic_square FROM user WHERE uid IN (SELECT uid2 FROM #friends)',"
     @"}";
     // Set up the query parameter
-    NSDictionary *queryParam = [NSDictionary dictionaryWithObjectsAndKeys:
-                                query, @"q", nil];
+    NSDictionary *queryParam = @{ @"q": query };
     // Make the API request that uses FQL
     [FBRequestConnection startWithGraphPath:@"/fql"
                                  parameters:queryParam
@@ -178,13 +122,28 @@
                                   NSLog(@"Result: %@", result);
                                   // Get the friend data to display
                                   NSArray *friendInfo =
-                                  (NSArray *) [[[result objectForKey:@"data"]
-                                                objectAtIndex:1]
-                                               objectForKey:@"fql_result_set"];
+                                  (NSArray *) result[@"data"][1][@"fql_result_set"];
                                   // Show the friend details display
                                   [self showFriends:friendInfo];
                               }
                           }];
+}
+
+#pragma mark - LoginView Delegate Methods
+/*
+ * Handle the logged in scenario
+ */
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    self.queryButton.hidden = NO;
+    self.multiQueryButton.hidden = NO;
+}
+
+/*
+ * Handle the logged out scenario
+ */
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    self.queryButton.hidden = YES;
+    self.multiQueryButton.hidden = YES;
 }
 
 @end
