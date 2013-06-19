@@ -18,7 +18,7 @@
 #import "AppDelegate.h"
 
 @interface ViewController ()
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton *authButton;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (unsafe_unretained, nonatomic) IBOutlet UITextView *postMessageTextView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *postButton;
 @property (unsafe_unretained, nonatomic) IBOutlet UILabel *statusLabel;
@@ -27,43 +27,11 @@
 
 @implementation ViewController
 
-@synthesize authButton;
 @synthesize postMessageTextView;
 @synthesize postButton;
 @synthesize statusLabel;
 
 #pragma mark - Helper methods
-
-/*
- * Configure the logged in versus logged out UI
- */
-- (void)sessionStateChanged:(NSNotification*)notification {
-    if (FBSession.activeSession.isOpen) {
-        [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
-        self.postButton.hidden = NO;
-        self.postMessageTextView.hidden = NO;
-        self.statusLabel.hidden = NO;
-        
-        // Get the most recent status
-        [FBRequestConnection
-         startWithGraphPath:@"me/statuses?limit=1"
-         completionHandler:^(FBRequestConnection *connection,
-                             id result,
-                             NSError *error) {
-             if (!error) {
-                 // Set the status label
-                 self.statusLabel.text = [[[result objectForKey:@"data"]
-                                           objectAtIndex:0]
-                                          objectForKey:@"message"];
-             }
-         }];
-    } else {
-        [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
-        self.postButton.hidden = YES;
-        self.postMessageTextView.hidden = YES;
-        self.statusLabel.hidden = YES;
-    }
-}
 
 /*
  * Post status update and read in updated status
@@ -119,29 +87,18 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // Register for notifications on FB session state changes
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(sessionStateChanged:)
-     name:FBSessionStateChangedNotification
-     object:nil];
-    
-    // Check the session for a cached token to show the proper authenticated
-    // UI. However, since this is not user intitiated, do not show the login UX.
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate openSessionWithAllowLoginUI:NO];
+    // Ask for the required permissions
+    self.loginView.readPermissions = @[@"basic_info", @"read_stream"];
 }
 
 - (void)viewDidUnload
 {
-    [self setAuthButton:nil];
     [self setPostMessageTextView:nil];
     [self setPostButton:nil];
     [self setStatusLabel:nil];
+    [self setLoginView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -164,27 +121,6 @@
 }
 
 #pragma mark - Action methods
-- (IBAction)authButtonAction:(id)sender {
-    AppDelegate *appDelegate =
-    [[UIApplication sharedApplication] delegate];
-    
-    // The user has initiated a login, so call the openSession method
-    // and show the login UX if necessary.
-    //[appDelegate openSessionWithAllowLoginUI:YES];
-    
-    // If the user is authenticated, log out when the button is clicked.
-    // If the user is not authenticated, log in when the button is clicked.
-    if (FBSession.activeSession.isOpen) {
-        [appDelegate closeSession];
-    } else {
-        // The user has initiated a login, so call the openSession method
-        // and show the login UX if necessary.
-        [appDelegate openSessionWithAllowLoginUI:YES];
-    }
-    
-    
-}
-
 - (IBAction)postButtonAction:(id)sender {
     if (![self.postMessageTextView.text isEqualToString:@""]) {
         // Ask for publish_actions permissions in context
@@ -206,6 +142,39 @@
             [self updateStatus];
         }
     }
+}
+
+#pragma mark - LoginView Delegate Methods
+/*
+ * Handle the logged in scenario
+ */
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    self.postButton.hidden = NO;
+    self.postMessageTextView.hidden = NO;
+    self.statusLabel.hidden = NO;
+    
+    // Get the most recent status
+    [FBRequestConnection
+     startWithGraphPath:@"me/statuses?limit=1"
+     completionHandler:^(FBRequestConnection *connection,
+                         id result,
+                         NSError *error) {
+         if (!error) {
+             // Set the status label
+             if (result[@"data"] && [result[@"data"] count] > 0) {
+                 self.statusLabel.text = result[@"data"][0][@"message"];
+             }
+         }
+     }];
+}
+
+/*
+ * Handle the logged out scenario
+ */
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    self.postButton.hidden = YES;
+    self.postMessageTextView.hidden = YES;
+    self.statusLabel.hidden = YES;
 }
 
 @end

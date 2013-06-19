@@ -1,5 +1,6 @@
+//
 /*
- * Copyright 2012 Facebook
+ * Copyright 2013 Facebook
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,19 +16,12 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <FacebookSDK/FacebookSDK.h>
 
-extern NSString *const FBSessionStateChangedNotification;
+#import "AppDelegate.h"
 
-@class ViewController;
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
-
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
-- (void) closeSession;
-
-@end
+int main(int argc, char *argv[])
+{
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
+}

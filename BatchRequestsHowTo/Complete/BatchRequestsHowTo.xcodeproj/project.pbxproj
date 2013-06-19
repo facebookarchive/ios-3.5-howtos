@@ -20,9 +20,9 @@
 		3017AECB15D99CF500C05803 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3017AEC715D99CF500C05803 /* Icon-72@2x.png */; };
 		3017AECC15D99CF500C05803 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3017AEC815D99CF500C05803 /* Icon.png */; };
 		3017AECD15D99CF500C05803 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3017AEC915D99CF500C05803 /* Icon@2x.png */; };
-		3017AECF15D99D0500C05803 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3017AECE15D99D0500C05803 /* FacebookSDK.framework */; };
-		3017AED115D99D0E00C05803 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3017AED015D99D0E00C05803 /* FacebookSDKResources.bundle */; };
 		30267BB01612444000B7B3CE /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30267BAF1612444000B7B3CE /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		302B9D5817712CA700970851 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 302B9D5717712CA700970851 /* FacebookSDK.framework */; };
+		302B9D5A17712F3900970851 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302B9D5917712F3900970851 /* FacebookSDKResources.bundle */; };
 		30DB4A0D160BF6DE00C2876A /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DB4A0C160BF6DE00C2876A /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		30DB4A10160BF6E400C2876A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30DB4A0F160BF6E400C2876A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -46,9 +46,9 @@
 		3017AEC715D99CF500C05803 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		3017AEC815D99CF500C05803 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3017AEC915D99CF500C05803 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		3017AECE15D99D0500C05803 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		3017AED015D99D0E00C05803 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		30267BAF1612444000B7B3CE /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		302B9D5717712CA700970851 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		302B9D5917712F3900970851 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		30DB4A0C160BF6DE00C2876A /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		30DB4A0F160BF6E400C2876A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -65,7 +65,7 @@
 				3017AEAA15D99CD500C05803 /* UIKit.framework in Frameworks */,
 				3017AEAC15D99CD500C05803 /* Foundation.framework in Frameworks */,
 				3017AEAE15D99CD500C05803 /* CoreGraphics.framework in Frameworks */,
-				3017AECF15D99D0500C05803 /* FacebookSDK.framework in Frameworks */,
+				302B9D5817712CA700970851 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,9 +92,9 @@
 		3017AEA815D99CD500C05803 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				302B9D5917712F3900970851 /* FacebookSDKResources.bundle */,
+				302B9D5717712CA700970851 /* FacebookSDK.framework */,
 				300A6C0E172F0E0F000380AA /* Security.framework */,
-				3017AED015D99D0E00C05803 /* FacebookSDKResources.bundle */,
-				3017AECE15D99D0500C05803 /* FacebookSDK.framework */,
 				30DB4A0F160BF6E400C2876A /* AdSupport.framework */,
 				30DB4A0C160BF6DE00C2876A /* Accounts.framework */,
 				30267BAF1612444000B7B3CE /* Social.framework */,
@@ -190,7 +190,7 @@
 				3017AECB15D99CF500C05803 /* Icon-72@2x.png in Resources */,
 				3017AECC15D99CF500C05803 /* Icon.png in Resources */,
 				3017AECD15D99CF500C05803 /* Icon@2x.png in Resources */,
-				3017AED115D99D0E00C05803 /* FacebookSDKResources.bundle in Resources */,
+				302B9D5A17712F3900970851 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,10 +292,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
+					"\"$(SRCROOT)/../../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BatchRequestsHowTo/BatchRequestsHowTo-Prefix.pch";
 				INFOPLIST_FILE = "BatchRequestsHowTo/BatchRequestsHowTo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -307,10 +309,12 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
+					"\"$(SRCROOT)/../../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BatchRequestsHowTo/BatchRequestsHowTo-Prefix.pch";
 				INFOPLIST_FILE = "BatchRequestsHowTo/BatchRequestsHowTo-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
