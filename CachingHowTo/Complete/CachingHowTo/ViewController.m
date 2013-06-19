@@ -23,7 +23,7 @@
 <FBFriendPickerDelegate,
 FBPlacePickerDelegate>
 
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton *authButton;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *showFriendsButton;
 @property (readwrite, copy, nonatomic) NSSet *extraFieldsForFriendRequest;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *showNearbyButton;
@@ -33,44 +33,8 @@ FBPlacePickerDelegate>
 
 @implementation ViewController
 
-@synthesize authButton;
 @synthesize showFriendsButton;
-@synthesize extraFieldsForFriendRequest = _extraFieldsForFriendRequest;
 @synthesize showNearbyButton;
-@synthesize searchLocation = _searchLocation;
-
-#pragma mark - Helper methods
-
-/*
- * Configure the logged in versus logged out UI
- */
-- (void)sessionStateChanged:(NSNotification*)notification {
-    if (FBSession.activeSession.isOpen) {
-        self.showFriendsButton.hidden = NO;
-        self.showNearbyButton.hidden = NO;
-        [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
-        
-        // Cache friend data
-        FBCacheDescriptor  *friendCacheDescriptor = [FBFriendPickerViewController
-                                                     cacheDescriptorWithUserID:nil
-                                                     fieldsForRequest:self.extraFieldsForFriendRequest];
-        [friendCacheDescriptor prefetchAndCacheForSession:FBSession.activeSession];
-        
-        // Cache nearby place data
-        FBCacheDescriptor *placeCacheDescriptor =
-        [FBPlacePickerViewController
-         cacheDescriptorWithLocationCoordinate:self.searchLocation
-         radiusInMeters:1000
-         searchText:nil
-         resultsLimit:20
-         fieldsForRequest:nil];
-        [placeCacheDescriptor prefetchAndCacheForSession:FBSession.activeSession];
-    } else {
-        self.showFriendsButton.hidden = YES;
-        self.showNearbyButton.hidden = YES;
-        [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
-    }
-}
 
 #pragma mark - View lifecycle
 
@@ -79,35 +43,23 @@ FBPlacePickerDelegate>
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    // Register for notifications on FB session state changes
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(sessionStateChanged:)
-     name:FBSessionStateChangedNotification
-     object:nil];
+    // Ask for the required permissions
+    self.loginView.readPermissions = @[@"basic_info", @"friends_about_me"];
     
     // Extra information to fetch for friends
     self.extraFieldsForFriendRequest = [NSSet setWithObjects:@"bio", nil];
     
     // Set current location to Facebook HQ
     self.searchLocation = CLLocationCoordinate2DMake(37.483253, -122.150037);
-    
-    // Check the session for a cached token to show the proper authenticated
-    // UI. However, since this is not user intitiated, do not show the login UX.
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate openSessionWithAllowLoginUI:NO];
-    
 }
 
 - (void)viewDidUnload
 {
-    [self setAuthButton:nil];
     [self setShowFriendsButton:nil];
     [self setShowNearbyButton:nil];
+    [self setLoginView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -116,26 +68,6 @@ FBPlacePickerDelegate>
 }
 
 #pragma mark - Action methods
-- (IBAction)authButtonAction:(id)sender {
-    AppDelegate *appDelegate =
-    [[UIApplication sharedApplication] delegate];
-    
-    // The user has initiated a login, so call the openSession method
-    // and show the login UX if necessary.
-    //[appDelegate openSessionWithAllowLoginUI:YES];
-    
-    // If the user is authenticated, log out when the button is clicked.
-    // If the user is not authenticated, log in when the button is clicked.
-    if (FBSession.activeSession.isOpen) {
-        [appDelegate closeSession];
-    } else {
-        // The user has initiated a login, so call the openSession method
-        // and show the login UX if necessary.
-        [appDelegate openSessionWithAllowLoginUI:YES];
-    }
-    
-    
-}
 
 - (IBAction)showFriendsAction:(id)sender {
     // Initialize the friend picker
@@ -242,6 +174,40 @@ FBPlacePickerDelegate>
                               otherButtonTitles:nil, nil];
         [alert show];
     }
+}
+
+#pragma mark - LoginView Delegate Methods
+
+/*
+ * Handle the logged in scenario
+ */
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    self.showFriendsButton.hidden = NO;
+    self.showNearbyButton.hidden = NO;
+    
+    // Cache friend data
+    FBCacheDescriptor  *friendCacheDescriptor = [FBFriendPickerViewController
+                                                 cacheDescriptorWithUserID:nil
+                                                 fieldsForRequest:self.extraFieldsForFriendRequest];
+    [friendCacheDescriptor prefetchAndCacheForSession:FBSession.activeSession];
+    
+    // Cache nearby place data
+    FBCacheDescriptor *placeCacheDescriptor =
+    [FBPlacePickerViewController
+     cacheDescriptorWithLocationCoordinate:self.searchLocation
+     radiusInMeters:1000
+     searchText:nil
+     resultsLimit:20
+     fieldsForRequest:nil];
+    [placeCacheDescriptor prefetchAndCacheForSession:FBSession.activeSession];
+}
+
+/*
+ * Handle the logged out scenario
+ */
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    self.showFriendsButton.hidden = YES;
+    self.showNearbyButton.hidden = YES;
 }
 
 @end

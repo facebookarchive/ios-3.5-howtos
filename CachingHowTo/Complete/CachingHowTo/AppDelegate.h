@@ -27,7 +27,4 @@ extern NSString *const FBSessionStateChangedNotification;
 
 @property (strong, nonatomic) ViewController *viewController;
 
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
-- (void) closeSession;
-
 @end

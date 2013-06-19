@@ -102,7 +102,7 @@ typedef void (^MyAppBlock)(void);
     
     // To run this on your own environment:
     // 1. Modify "furious-mist-4378.herokuapp.com" to your own App Domain
-    // 2. Enter this App Domain in your Facebook App Dashboard Basic Settings
+    // 2. Enter your App Domain in your Facebook App Dashboard Basic Settings
     // 3. Set the .plist for this app to reference your app ID and other info
     //     - FacebookAppID
     //     - URL types > Item 0 > URL Schemes
