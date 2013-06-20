@@ -18,31 +18,16 @@
 #import "AppDelegate.h"
 
 @interface ViewController ()
-
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton *authButton;
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (unsafe_unretained, nonatomic) IBOutlet UIButton *publishButton;
 
 @end
 
 @implementation ViewController
 
-@synthesize authButton;
 @synthesize publishButton;
 
 #pragma mark - Helper methods
-
-/*
- * Configure the logged in versus logged out UI
- */
-- (void)sessionStateChanged:(NSNotification*)notification {
-    if (FBSession.activeSession.isOpen) {
-        self.publishButton.hidden = NO;
-        [self.authButton setTitle:@"Logout" forState:UIControlStateNormal];
-    } else {
-        self.publishButton.hidden = YES;
-        [self.authButton setTitle:@"Login" forState:UIControlStateNormal];
-    }
-}
 
 /**
  * A function for parsing URL parameters.
@@ -53,10 +38,8 @@
     for (NSString *pair in pairs) {
         NSArray *kv = [pair componentsSeparatedByString:@"="];
         NSString *val =
-        [[kv objectAtIndex:1]
-         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        [params setObject:val forKey:[kv objectAtIndex:0]];
+        [kv[1] stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+        params[kv[0]] = val;
     }
     return params;
 }
@@ -67,28 +50,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    
-    // Register for notifications on FB session state changes
-    [[NSNotificationCenter defaultCenter]
-     addObserver:self
-     selector:@selector(sessionStateChanged:)
-     name:FBSessionStateChangedNotification
-     object:nil];
-    
-    // Check the session for a cached token to show the proper authenticated
-    // UI. However, since this is not user intitiated, do not show the login UX.
-    AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-    [appDelegate openSessionWithAllowLoginUI:NO];
 }
 
 - (void)viewDidUnload
 {
-    [self setAuthButton:nil];
     [self setPublishButton:nil];
+    [self setLoginView:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -97,26 +66,6 @@
 }
 
 #pragma mark - Action methods
-- (IBAction)authButtonAction:(id)sender {
-    AppDelegate *appDelegate =
-    [[UIApplication sharedApplication] delegate];
-    
-    // The user has initiated a login, so call the openSession method
-    // and show the login UX if necessary.
-    //[appDelegate openSessionWithAllowLoginUI:YES];
-    
-    // If the user is authenticated, log out when the button is clicked.
-    // If the user is not authenticated, log in when the button is clicked.
-    if (FBSession.activeSession.isOpen) {
-        [appDelegate closeSession];
-    } else {
-        // The user has initiated a login, so call the openSession method
-        // and show the login UX if necessary.
-        [appDelegate openSessionWithAllowLoginUI:YES];
-    }
-    
-    
-}
 
 - (IBAction)publishButtonAction:(id)sender {
     // Put together the dialog parameters
@@ -165,4 +114,20 @@
          }
     }];
 }
+
+#pragma mark - LoginView Delegate Methods
+/*
+ * Handle the logged in scenario
+ */
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
+    self.publishButton.hidden = NO;
+}
+
+/*
+ * Handle the logged out scenario
+ */
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
+    self.publishButton.hidden = YES;
+}
+
 @end
