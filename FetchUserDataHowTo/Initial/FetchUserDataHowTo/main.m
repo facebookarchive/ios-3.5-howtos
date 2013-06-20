@@ -15,19 +15,12 @@
  */
 
 #import <UIKit/UIKit.h>
-#import <FacebookSDK/FacebookSDK.h>
 
-extern NSString *const FBSessionStateChangedNotification;
+#import "AppDelegate.h"
 
-@class ViewController;
-
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) ViewController *viewController;
-
-- (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
-- (void) closeSession;
-
-@end
+int main(int argc, char *argv[])
+{
+    @autoreleasepool {
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppDelegate class]));
+    }
+}
