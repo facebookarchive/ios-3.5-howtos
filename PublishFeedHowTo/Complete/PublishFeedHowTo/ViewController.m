@@ -19,14 +19,16 @@
 #import "ShareViewController.h"
 
 @interface ViewController ()
-
 @property (weak, nonatomic) IBOutlet FBLoginView *loginView;
-@property (weak, nonatomic) IBOutlet UIButton *shareWebFallbackButton;
-@property (weak, nonatomic) IBOutlet UIButton *shareAPIFallbackButton;
+@property (unsafe_unretained, nonatomic) IBOutlet UIButton *publishButton;
 
 @end
 
 @implementation ViewController
+
+@synthesize publishButton;
+
+#pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
@@ -37,44 +39,27 @@
     self.loginView.readPermissions = @[@"basic_info"];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidUnload
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidUnload {
-    [self setShareWebFallbackButton:nil];
-    [self setShareAPIFallbackButton:nil];
+    [self setPublishButton:nil];
     [self setLoginView:nil];
     [super viewDidUnload];
+    // Release any retained subviews of the main view.
+
 }
 
-#pragma mark - Share Methods
-
-/*
- * Method invoked when the share button is clicked
- */
-- (IBAction)shareButtonAction:(id)sender {
-    // TO DO: Implement share
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
-#pragma mark - Helper methods
-/*
- * Helper method to parse URL parameters.
- */
-- (NSDictionary*)parseURLParams:(NSString *)query {
-    NSArray *pairs = [query componentsSeparatedByString:@"&"];
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    for (NSString *pair in pairs) {
-        NSArray *kv = [pair componentsSeparatedByString:@"="];
-        NSString *val =
-        [[kv objectAtIndex:1]
-         stringByReplacingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        
-        [params setObject:val forKey:[kv objectAtIndex:0]];
-    }
-    return params;
+#pragma mark - Action methods
+
+- (IBAction)publishButtonAction:(id)sender {
+    ShareViewController *viewController = [[ShareViewController alloc]
+                                           initWithNibName:@"ShareViewController"
+                                           bundle:nil];
+    [self presentViewController:viewController animated:YES completion:nil];
 }
 
 #pragma mark - LoginView Delegate Methods
@@ -82,16 +67,14 @@
  * Handle the logged in scenario
  */
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView {
-    self.shareWebFallbackButton.hidden = NO;
-    self.shareAPIFallbackButton.hidden = NO;
+    self.publishButton.hidden = NO;
 }
 
 /*
  * Handle the logged out scenario
  */
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
-    self.shareWebFallbackButton.hidden = NO;
-    self.shareAPIFallbackButton.hidden = YES;
+    self.publishButton.hidden = YES;
 }
 
 @end

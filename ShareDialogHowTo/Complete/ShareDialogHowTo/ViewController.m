@@ -20,6 +20,7 @@
 typedef void (^MyAppBlock)(void);
 
 @interface ViewController ()
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 
 @end
 
@@ -29,6 +30,9 @@ typedef void (^MyAppBlock)(void);
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Ask for the required permissions
+    self.loginView.readPermissions = @[@"basic_info"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -231,4 +235,8 @@ typedef void (^MyAppBlock)(void);
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView {
 }
 
+- (void)viewDidUnload {
+    [self setLoginView:nil];
+    [super viewDidUnload];
+}
 @end

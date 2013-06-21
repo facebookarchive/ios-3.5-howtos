@@ -19,10 +19,9 @@
 #import "ShareViewController.h"
 
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet FBLoginView *loginView;
 @property (weak, nonatomic) IBOutlet UIButton *shareWebFallbackButton;
 @property (weak, nonatomic) IBOutlet UIButton *shareAPIFallbackButton;
-
 @end
 
 @implementation ViewController
@@ -31,6 +30,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    // Ask for the required permissions
+    self.loginView.readPermissions = @[@"basic_info"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,6 +44,7 @@
 - (void)viewDidUnload {
     [self setShareWebFallbackButton:nil];
     [self setShareAPIFallbackButton:nil];
+    [self setLoginView:nil];
     [super viewDidUnload];
 }
 
