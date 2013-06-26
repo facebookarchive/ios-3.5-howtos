@@ -15,7 +15,6 @@
  */
 
 #import "MyTokenCachingStrategy.h"
-#import "JSONKit.h"
 
 // Local vs. Remote flag
 // Set to local initially. You can change to the remote endpoint
@@ -40,9 +39,6 @@ static NSString* kDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
 @end
 
 @implementation MyTokenCachingStrategy
-
-@synthesize tokenFilePath = _tokenFilePath;
-@synthesize thirdPartySessionId = _thirdPartySessionId;
 
 #pragma mark - Initialization methods
 /*
@@ -158,13 +154,14 @@ static NSString* kDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
                                               forString:obj
                                        errorDescription:nil];
             if (isDate) {
+                resultDictionary[key] = objDate;
                 [resultDictionary setObject:objDate forKey:key];
             } else {
-                [resultDictionary setObject:obj forKey:key];
+                resultDictionary[key] = obj;
             }
         } else {
             // Non-string, just keep as-is
-            [resultDictionary setObject:obj forKey:key];
+            resultDictionary[key] = obj;
         }
     }];
     return resultDictionary;
@@ -175,31 +172,46 @@ static NSString* kDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
  * for both reads and writes.
  */
 - (NSDictionary *) handleResponse:(NSData *)responseData {
-    // String representation of HTTP response data
-    NSString* responseString = [[NSString alloc]
-                                initWithData:responseData
-                                encoding:NSUTF8StringEncoding];
-    id result = [responseString objectFromJSONString];
+    NSError *jsonError = nil;
+    id result = [NSJSONSerialization JSONObjectWithData:responseData
+                                                options:0
+                                                  error:&jsonError];
+    if (jsonError) {
+        return nil;
+    }
     // Check for a properly formatted response
     if ([result isKindOfClass:[NSDictionary class]] &&
-        [result objectForKey:@"status"]) {
+        result[@"status"]) {
         // Check if we got a success case back
-        BOOL success = [[result objectForKey:@"status"] boolValue];
+        BOOL success = [result[@"status"] boolValue];
         if (!success) {
             // Handle the error case
-            NSLog(@"Error: %@", [result objectForKey:@"errorMessage"]);
+            NSLog(@"Error: %@", result[@"errorMessage"]);
             return nil;
         } else {
             // Check for returned token data (in the case of read requests)
-            if ([result objectForKey:@"token_info"]) {
+            if (result[@"token_info"]) {
                 // Create an NSDictionary of the token data
-                NSDictionary *tokenResult = [[result objectForKey:@"token_info"]
-                                             objectFromJSONString];
-                // Check if valid data returned, i.e. not nil
-                if ([tokenResult isKindOfClass:[NSDictionary class]]) {
-                    // Parse the results to handle conversion for
-                    // date values.
-                    return [self dictionaryDateParse:tokenResult];
+                NSData *jsonData = [result[@"token_info"]
+                                    dataUsingEncoding:NSUTF8StringEncoding];
+                if (jsonData) {
+                    jsonError = nil;
+                    NSDictionary *tokenResult =
+                    [NSJSONSerialization JSONObjectWithData:jsonData
+                                                    options:0
+                                                      error:&jsonError];
+                    if (jsonError) {
+                        return nil;
+                    }
+                    
+                    // Check if valid data returned, i.e. not nil
+                    if ([tokenResult isKindOfClass:[NSDictionary class]]) {
+                        // Parse the results to handle conversion for
+                        // date values.
+                        return [self dictionaryDateParse:tokenResult];
+                    } else {
+                        return nil;
+                    }
                 } else {
                     return nil;
                 }
@@ -220,19 +232,32 @@ static NSString* kDateFormat = @"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ";
     NSLog(@"Write - Data = %@", data);
     NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:kDateFormat];
-    NSString *jsonDataString = [data JSONStringWithOptions:JKParseOptionNone
-                     serializeUnsupportedClassesUsingBlock:^id(id object) {
-                         // JSONKit does not support dates, so convert date
-                         // objects to a formatted string.
-                         if([object isKindOfClass:[NSDate class]]) {
-                             return([dateFormatter stringFromDate:object]);
-                         } else {
-                             return nil;
-                         }
-                     }
-                                                     error:nil];
-    NSURLResponse *response = nil;
     NSError *error = nil;
+    NSString *jsonDataString = @"";
+    if (nil != data) {
+        NSMutableDictionary *copyData = [data mutableCopy];
+        // Enumerate through the input dictionary
+        [data enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+            if([object isKindOfClass:[NSDate class]]) {
+                copyData[key] = [dateFormatter stringFromDate:object];
+            } else {
+                copyData[key] = object;
+            }
+        }];
+        NSData *jsonData = [NSJSONSerialization
+                            dataWithJSONObject:copyData
+                            options:0
+                            error:&error];
+        if (error) {
+            NSLog(@"JSON error: %@", error);
+            return;
+        }
+        jsonDataString = [[NSString alloc] initWithData:jsonData
+                                               encoding:NSUTF8StringEncoding];
+    }
+    
+    NSURLResponse *response = nil;
+    error = nil;
     // Set up a URL request to the back-end server
     NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:
                                        [NSURL URLWithString:kBackendURL]];
