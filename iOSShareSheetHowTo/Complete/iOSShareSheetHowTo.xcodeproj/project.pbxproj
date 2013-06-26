@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3006DAE7177BA43900F5AB10 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3006DAE6177BA43900F5AB10 /* FacebookSDK.framework */; };
+		3006DAE9177BA44000F5AB10 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3006DAE8177BA44000F5AB10 /* FacebookSDKResources.bundle */; };
 		30385BE917017A1600776F19 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30385BE817017A1600776F19 /* Security.framework */; };
-		30385BEB17017CAA00776F19 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30385BEA17017CAA00776F19 /* FacebookSDK.framework */; };
-		30385BED17017CBE00776F19 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30385BEC17017CBE00776F19 /* FacebookSDKResources.bundle */; };
 		3086296B16120F8800276720 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3086296A16120F8800276720 /* UIKit.framework */; };
 		3086296D16120F8800276720 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3086296C16120F8800276720 /* Foundation.framework */; };
 		3086296F16120F8800276720 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3086296E16120F8800276720 /* CoreGraphics.framework */; };
@@ -28,15 +28,13 @@
 		3086299C1612104D00276720 /* Icon-72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 308629981612104D00276720 /* Icon-72@2x.png */; };
 		3086299D1612104D00276720 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 308629991612104D00276720 /* Icon.png */; };
 		3086299E1612104D00276720 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3086299A1612104D00276720 /* Icon@2x.png */; };
-		308629A61612124C00276720 /* ShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308629A41612124B00276720 /* ShareViewController.m */; };
-		308629A71612124C00276720 /* ShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 308629A51612124B00276720 /* ShareViewController.xib */; };
 		308629A916121A7800276720 /* iossdk_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 308629A816121A7800276720 /* iossdk_logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3006DAE6177BA43900F5AB10 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		3006DAE8177BA44000F5AB10 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		30385BE817017A1600776F19 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		30385BEA17017CAA00776F19 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		30385BEC17017CBE00776F19 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../../../Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		3086296616120F8800276720 /* iOSShareSheetHowTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSShareSheetHowTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3086296A16120F8800276720 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3086296C16120F8800276720 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,9 +58,6 @@
 		308629981612104D00276720 /* Icon-72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72@2x.png"; sourceTree = "<group>"; };
 		308629991612104D00276720 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		3086299A1612104D00276720 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
-		308629A31612124B00276720 /* ShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareViewController.h; sourceTree = "<group>"; };
-		308629A41612124B00276720 /* ShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareViewController.m; sourceTree = "<group>"; };
-		308629A51612124B00276720 /* ShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShareViewController.xib; sourceTree = "<group>"; };
 		308629A816121A7800276720 /* iossdk_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iossdk_logo.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -78,7 +73,7 @@
 				3086296B16120F8800276720 /* UIKit.framework in Frameworks */,
 				3086296D16120F8800276720 /* Foundation.framework in Frameworks */,
 				3086296F16120F8800276720 /* CoreGraphics.framework in Frameworks */,
-				30385BEB17017CAA00776F19 /* FacebookSDK.framework in Frameworks */,
+				3006DAE7177BA43900F5AB10 /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -105,8 +100,8 @@
 		3086296916120F8800276720 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				30385BEC17017CBE00776F19 /* FacebookSDKResources.bundle */,
-				30385BEA17017CAA00776F19 /* FacebookSDK.framework */,
+				3006DAE8177BA44000F5AB10 /* FacebookSDKResources.bundle */,
+				3006DAE6177BA43900F5AB10 /* FacebookSDK.framework */,
 				30385BE817017A1600776F19 /* Security.framework */,
 				3086299116120FD300276720 /* Social.framework */,
 				3086298F16120FCC00276720 /* AdSupport.framework */,
@@ -126,9 +121,6 @@
 				3086298216120F8800276720 /* ViewController.h */,
 				3086298316120F8800276720 /* ViewController.m */,
 				3086298516120F8800276720 /* ViewController.xib */,
-				308629A31612124B00276720 /* ShareViewController.h */,
-				308629A41612124B00276720 /* ShareViewController.m */,
-				308629A51612124B00276720 /* ShareViewController.xib */,
 				3086297116120F8800276720 /* Supporting Files */,
 			);
 			path = iOSShareSheetHowTo;
@@ -213,9 +205,8 @@
 				3086299C1612104D00276720 /* Icon-72@2x.png in Resources */,
 				3086299D1612104D00276720 /* Icon.png in Resources */,
 				3086299E1612104D00276720 /* Icon@2x.png in Resources */,
-				308629A71612124C00276720 /* ShareViewController.xib in Resources */,
 				308629A916121A7800276720 /* iossdk_logo.png in Resources */,
-				30385BED17017CBE00776F19 /* FacebookSDKResources.bundle in Resources */,
+				3006DAE9177BA44000F5AB10 /* FacebookSDKResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -229,7 +220,6 @@
 				3086297716120F8800276720 /* main.m in Sources */,
 				3086297B16120F8800276720 /* AppDelegate.m in Sources */,
 				3086298416120F8800276720 /* ViewController.m in Sources */,
-				308629A61612124C00276720 /* ShareViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,7 +307,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
+					"\"$(SRCROOT)/../../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSShareSheetHowTo/iOSShareSheetHowTo-Prefix.pch";
@@ -332,7 +322,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../../../Documents/FacebookSDK\"",
+					"\"$(SRCROOT)/../../../../../../Documents/FacebookSDK\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iOSShareSheetHowTo/iOSShareSheetHowTo-Prefix.pch";
