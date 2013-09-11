@@ -1,4 +1,4 @@
-# Facebook SDK 3.2 for iOS - Sample How Tos
+# Facebook SDK 3.5 for iOS - Sample How Tos
 
 Sample apps to support How To documentation found in the iOS Dev Center.
 
